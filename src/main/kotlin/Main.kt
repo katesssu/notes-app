@@ -1,3 +1,4 @@
+import utils.readIntNotNull
 import java.lang.System.exit
 
 fun mainMenu(): Int {
@@ -14,7 +15,7 @@ fun mainMenu(): Int {
           |   0) Exit                      |
           ----------------------------------
           ==>> """.trimMargin(">"))
-    return readlnOrNull()?.toIntOrNull() ?: -1
+    return utils.readIntNotNull()
 }
 
 fun runMenu() {
@@ -54,3 +55,5 @@ fun exitApp(){
 fun main() {
     runMenu()
 }
+
+
