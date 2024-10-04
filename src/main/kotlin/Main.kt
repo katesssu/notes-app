@@ -1,3 +1,4 @@
+import io.github.oshai.kotlinlogging.KotlinLogging
 import utils.readIntNotNull
 import java.lang.System.exit
 
@@ -32,7 +33,7 @@ fun runMenu() {
 }
 
 fun addNote(){
-    println("You chose Add Note")
+    logger.info { "addNote() function invoked" }
 }
 
 fun listNotes(){
@@ -51,6 +52,8 @@ fun exitApp(){
     println("Exiting...bye")
     exit(0)
 }
+
+private val logger = KotlinLogging.logger {}
 
 fun main() {
     runMenu()
