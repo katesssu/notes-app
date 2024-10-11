@@ -1,4 +1,6 @@
+import controllers.NoteController
 import io.github.oshai.kotlinlogging.KotlinLogging
+import models.Note
 import utils.readIntNotNull
 import utils.readNextChar
 import utils.readNextInt
@@ -36,12 +38,22 @@ fun runMenu() {
 }
 
 fun addNote(){
-    logger.info { "addNote() function invoked" }
-    readNextLine ("Enter a line: ")
+    val noteTitle = readNextLine("Enter a title for the note: ")
+    val notePriority = readNextInt("Enter a priority (1-low, 2, 3, 4, 5-high): ")
+    val noteCategory = readNextLine("Enter a category for the note: ")
+    val isAdded = noteController.add(Note(noteTitle, notePriority, noteCategory, false))
+
+    if (isAdded) {
+        println("Added Successfully")
+    } else {
+        println("Add Failed")
+    }
 }
 
+
+
 fun listNotes(){
-    println("You chose List Notes")
+    println(noteController.listAllNotes())
 }
 
 fun updateNote(){
@@ -62,5 +74,8 @@ private val logger = KotlinLogging.logger {}
 fun main() {
     runMenu()
 }
+
+private val noteController = NoteController()
+
 
 
